@@ -27,7 +27,7 @@ echo "Generate ssh key"
 mkdir ~/.ssh && cd ~/.ssh
 ssh-keygen -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa
-read "Copy ssh key to github and press [enter]"
+echo -n "Copy ssh key to github and press [enter]" && read TMP 
 
 echo "Configure git"
 echo -n  "Username for git: " && read USER
