@@ -24,6 +24,7 @@ echo "Change to zshell"
 sudo chsh -s /usr/bin/zsh $who
 
 echo "Generate ssh key"
+mkdir ~/.ssh && cd ~/.ssh
 ssh-keygen
 cat ~/.ssh/id_rsa
 read -p "Copy ssh key to github and press [enter]"
