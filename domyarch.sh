@@ -1,6 +1,6 @@
 #!/bin/sh
 # my Arch Linux user setup script
-set -euo pipefail
+##set -euo pipefail
 
 echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
