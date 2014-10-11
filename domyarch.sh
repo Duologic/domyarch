@@ -11,7 +11,7 @@ sudo pacman -Syu --noconfirm --needed \
 echo "Install cower for AUR"
 mkdir ~/aur
 curl -LSso ~/aur/cower-git.tar.gz https://aur.archlinux.org/packages/co/cower-git/cower-git.tar.gz
-cd ~/aur && tar -xzf cower-git.tar.gz && cd ~/aur/cower-git && makepkg -si
+cd ~/aur && tar -xzf cower-git.tar.gz && cd ~/aur/cower-git && makepkg -si --noconfirm
 
 echo "Install asciiquarium"
 cd ~/aur
