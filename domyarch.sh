@@ -6,7 +6,7 @@ echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
     base-devel sudo zsh tmux htop pass git \
     vim openssh lsof strace dnsutils keychain sl \
-    python python-pip python2 python2-pip python-setuptool
+    python python-pip python2 python2-pip
 
 echo "Install cower for AUR"
 mkdir ~/aur
