@@ -26,15 +26,14 @@ sudo chsh -s /usr/bin/zsh $who
 echo "Generate ssh key"
 mkdir ~/.ssh && cd ~/.ssh
 ssh-keygen -f ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa
-echo -n "Copy ssh key to github and press [enter]"
-(read TMP)
+cat ~/.ssh/id_rsa.pub
+read -p "Copy ssh key to github and press [enter]"
 
 echo "Configure git"
-echo -n  "Username for git: "
-(read USER ; git config --global user.name $USER)
-echo -n  "E-mail for git: "
-(read MAIL ; git config --global user.email $MAIL)
+read -p "Username for git: " USER
+read -p  "E-mail for git: " MAIL
+git config --global user.name $USER
+git config --global user.email $MAIL
 git config --global push.default current
 
 echo "Configure user with dotfiles"
