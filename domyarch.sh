@@ -6,8 +6,8 @@ who=$(whoami)
 
 echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
-    base-devel sudo zsh tmux htop pass git \
-    vim openssh lsof strace dnsutils keychain sl \
+    base-devel sudo zsh tmux htop pass git pkgfile \
+    vim openssh lsof strace dnsutils pciutilskeychain sl \
     python python-pip python2 python2-pip
 
 echo "Install cower for AUR"
@@ -22,6 +22,7 @@ cd ~/aur/asciiquarium && makepkg -si --noconfirm
 
 echo "Change to zshell"
 sudo chsh -s /usr/bin/zsh $who
+sudo pkgfile --update
 
 echo "Generate ssh key"
 mkdir ~/.ssh && cd ~/.ssh
