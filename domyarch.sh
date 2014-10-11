@@ -6,8 +6,8 @@ who=$(whoami)
 
 echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
-    base-devel sudo zsh tmux htop pass git pkgfile \
-    vim openssh lsof strace dnsutils pciutilskeychain sl \
+    base-devel sudo zsh sl tmux htop git vim pkgfile \
+    openssh keychain pass lsof strace dnsutils pciutils \
     python python-pip python2 python2-pip
 
 echo "Install cower for AUR"
