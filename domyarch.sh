@@ -2,6 +2,8 @@
 # my Arch Linux user setup script
 ##set -euo pipefail
 
+who=$(whoami)
+
 echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
     base-devel sudo zsh tmux htop pass git \
@@ -19,7 +21,7 @@ cower -d asciiquarium
 cd ~/aur/asciiquarium && makepkg -si --noconfirm
 
 echo "Change to zshell"
-chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh $who
 
 echo "Generate ssh key"
 ssh-keygen
