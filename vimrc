@@ -27,7 +27,6 @@ set background=light
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2
 " set mouse=a
-set viminfo='10,\"100,:20,%,n~/.viminfo
 autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
@@ -49,3 +48,4 @@ syntax on
 " cd ~/.vim/bundle
 " git clone git://github.com/klen/python-mode.git
 " curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+set viminfo='10,\"100,:20,%,n~/.vim/viminfo
