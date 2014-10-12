@@ -2,7 +2,8 @@
 stty -ixon
 
 # some zsh variables
-HISTFILE=~/.histfile
+ZDOTDIR=~/.zdotdir
+HISTFILE=~/.zdotdir/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 DART=$'\u25ba'
@@ -108,6 +109,8 @@ export DISPLAY=:0
 export EDITOR=vim
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH=~/.gem/ruby/2.1.0/bin:$PATH
+export LESSHISTFILE=~/.config/less/lesshst
+export XDG_CACHE_HOME=~/.cache
 
 # virtualenv configuration
 export VIRTUAL_ENV_DISABLE_PROMPT=1
