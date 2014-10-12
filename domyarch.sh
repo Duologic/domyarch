@@ -8,6 +8,7 @@ echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
     base-devel sudo zsh sl tmux htop git vim pkgfile \
     openssh keychain pass lsof strace dnsutils pciutils \
+    xorg xorg-apps xorg-fonts xorg-xinit xcompmgr autocutsel xscreensaver \
     python python-pip python2 python2-pip
 
 echo "Install cower for AUR"
@@ -45,6 +46,8 @@ ln -s ~/git/domyarch/zshrc ~/.zshrc
 ln -s ~/git/domyarch/tmux.conf ~/.tmux.conf
 ln -s ~/git/domyarch/vimrc ~/.vimrc
 ln -s ~/git/domyarch/gitignore ~/.gitignore
+ln -s ~/git/domyarch/xinitrc ~/.xinitrc
+ln -s ~/git/domyarch/Xmodmap ~/.Xmodmap
 
 echo "Install Pathogen and Python mode for VIM"
 mkdir -p ~/.vim/autoload ~/.vim/bundle
