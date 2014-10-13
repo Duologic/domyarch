@@ -118,12 +118,6 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 export WORKON_HOME=~/Envs
 [ -r /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
 
-# tmux config
-[ -n "$TMUX" ] && export TERM=screen-256color
-if which tmux 2>&1 >/dev/null; then
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
-
 # ssh and gpg agent config
 eval $(keychain --eval --agents ssh -Q --quiet --ignore-missing id_ecdsa id_rsa)
 if [ $EUID -ne 0 ] ; then
@@ -135,4 +129,10 @@ if [ $EUID -ne 0 ] ; then
     fi
     export GPG_AGENT_INFO  # the env file does not contain the export statement
 #    export SSH_AUTH_SOCK   # enable gpg-agent for ssh
+fi
+
+# tmux config
+[ -n "$TMUX" ] && export TERM=screen-256color
+if which tmux 2>&1 >/dev/null; then
+    test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
