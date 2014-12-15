@@ -88,9 +88,12 @@ alias l='ls -CF'
 alias sgrep='grep --color -n -r -s --exclude-dir=".git"'
 alias sigrep='sgrep -i'
 alias sgrepy='sgrep --include="*.py"'
+alias sgrepj='sgrep --include="*.java"'
 alias sigrepy='sigrep --include="*.py"'
+alias findfile='find . -name '
 alias rm='rm -i'
 alias view='vim -R'
+function md2man () { pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less }
 function pass_cmd () {
     sed -i -e "s/gtk-2/curses/g" ~/.gnupg/gpg-agent.conf
     echo RELOADAGENT | gpg-connect-agent
@@ -99,6 +102,7 @@ function pass_cmd () {
     echo RELOADAGENT | gpg-connect-agent
 }
 alias pass='pass_cmd'
+qrdecode() { zbarimg -S\*.disable -Sqrcode.enable "$1" -q | sed '1s/^[^:]\+://'; }
 
 # local aliases
 alias time='/usr/bin/time -f "\nTime: %E | CPU: %P | MEM: %M KiB"'
@@ -109,8 +113,10 @@ export DISPLAY=:0
 export EDITOR=vim
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH=~/.gem/ruby/2.1.0/bin:$PATH
+export PATH=~/.cabal/bin:$PATH
 export LESSHISTFILE=~/.config/less/lesshst
 export XDG_CACHE_HOME=~/.cache
+export PSQLRC=~/.config/psql/psqlrc
 
 # virtualenv configuration
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -118,8 +124,14 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 export WORKON_HOME=~/Envs
 [ -r /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
 
+# tmux config
+[ -n "$TMUX" ] && export TERM=screen-256color
+if which tmux 2>&1 >/dev/null; then
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
+
 # ssh and gpg agent config
-eval $(keychain --eval --agents ssh -Q --quiet --ignore-missing id_ecdsa id_rsa)
+eval $(keychain --nogui --eval --agents ssh -Q --quiet --ignore-missing id_ecdsa id_rsa 006D6418)
 if [ $EUID -ne 0 ] ; then
     envfile="$HOME/.gnupg/gpg-agent.env"
     if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
@@ -127,12 +139,6 @@ if [ $EUID -ne 0 ] ; then
     else
         eval "$(gpg-agent --daemon --write-env-file "$envfile")"
     fi
-    export GPG_AGENT_INFO  # the env file does not contain the export statement
-#    export SSH_AUTH_SOCK   # enable gpg-agent for ssh
 fi
-
-# tmux config
-[ -n "$TMUX" ] && export TERM=screen-256color
-if which tmux 2>&1 >/dev/null; then
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+export GPG_AGENT_INFO  # the env file does not contain the export statement
+[ -r $HOME/.zshrc.extra ] && source $HOME/.zshrc.extra
