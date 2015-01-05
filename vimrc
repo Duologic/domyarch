@@ -31,13 +31,10 @@ autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-set list
-set listchars=eol:$
 set cmdheight=2
 set shortmess=a
 set nocp
-set list listchars=tab:→\ ,trail:·
-" Pathogen load
+set list listchars=tab:→\ ,trail:·,eol:$
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
