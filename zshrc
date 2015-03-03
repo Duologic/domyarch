@@ -92,6 +92,7 @@ alias sgrepj='sgrep --include="*.java"'
 alias sigrepy='sigrep --include="*.py"'
 alias findfile='find . -name '
 alias rm='rm -i'
+alias sdig='dig +noall +answer'
 alias view='vim -R'
 function md2man () { pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less }
 function pass_cmd () {
