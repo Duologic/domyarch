@@ -1,3 +1,4 @@
+[ -r $HOME/.zshrc.extra ] && source $HOME/.zshrc.extra
 # stop messages
 stty -ixon
 
@@ -80,7 +81,6 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 
 # general aliases
-alias ls='ls --color'
 alias lsi='ls -ilah'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -104,10 +104,6 @@ function pass_cmd () {
 alias pass='pass_cmd'
 qrdecode() { zbarimg -S\*.disable -Sqrcode.enable "$1" -q | sed '1s/^[^:]\+://'; }
 
-# local aliases
-alias time='/usr/bin/time -f "\nTime: %E | CPU: %P | MEM: %M KiB"'
-alias xlock='xscreensaver-command -lock'
-
 # general exported variables
 export DISPLAY=:0
 export EDITOR=vim
@@ -129,16 +125,3 @@ export WORKON_HOME=~/Envs
 if which tmux 2>&1 >/dev/null; then
     test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
-
-# ssh and gpg agent config
-eval $(keychain --nogui --eval --agents ssh -Q --quiet --ignore-missing id_ecdsa id_rsa 006D6418)
-if [ $EUID -ne 0 ] ; then
-    envfile="$HOME/.gnupg/gpg-agent.env"
-    if [[ -e "$envfile" ]] && kill -0 $(grep GPG_AGENT_INFO "$envfile" | cut -d: -f 2) 2>/dev/null; then
-        eval "$(cat "$envfile")"
-    else
-        eval "$(gpg-agent --daemon --write-env-file "$envfile")"
-    fi
-fi
-export GPG_AGENT_INFO  # the env file does not contain the export statement
-[ -r $HOME/.zshrc.extra ] && source $HOME/.zshrc.extra
