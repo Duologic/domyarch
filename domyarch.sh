@@ -8,7 +8,7 @@ echo "Install packages with Pacman"
 sudo pacman -Syu --noconfirm --needed \
     base-devel sudo zsh sl tmux htop git vim pkgfile \
     openssh keychain pass lsof strace dnsutils pciutils \
-    xorg xorg-apps xorg-fonts xorg-xinit xcompmgr autocutsel xscreensaver \
+    xorg xorg-apps xorg-fonts xorg-xinit xcompmgr autocutsel slock \
     python python-pip python2 python2-pip
 
 echo "Install cower for AUR"
