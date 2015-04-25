@@ -1,4 +1,3 @@
-[ -r $HOME/.zshrc.extra ] && source $HOME/.zshrc.extra
 # stop messages
 stty -ixon
 
@@ -84,7 +83,7 @@ fi
 alias lsi='ls -ilah'
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -CFl'
 alias sgrep='grep --color -n -r -s --exclude-dir=".git"'
 alias sigrep='sgrep -i'
 alias sgrepy='sgrep --include="*.py"'
@@ -109,7 +108,6 @@ qrdecode() { zbarimg -S\*.disable -Sqrcode.enable "$1" -q | sed '1s/^[^:]\+://';
 export DISPLAY=:0
 export EDITOR=vim
 export JAVA_HOME=/usr/lib/jvm/default
-export PATH=~/.gem/ruby/2.1.0/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
 export LESSHISTFILE=~/.config/less/lesshst
 export XDG_CACHE_HOME=~/.cache
@@ -121,8 +119,4 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 export WORKON_HOME=~/Envs
 [ -r /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
 
-# tmux config
-[ -n "$TMUX" ] && export TERM=screen-256color
-if which tmux 2>&1 >/dev/null; then
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+[ -r $HOME/.zshrc.extra ] && source $HOME/.zshrc.extra
